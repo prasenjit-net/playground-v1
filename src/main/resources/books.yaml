@@ -1,0 +1,163 @@
+---
+openapi: 3.0.1
+info:
+  title: books api
+  version: 1.0.0
+  description: books api
+servers:
+  - url: http://localhost:8080
+paths:
+  /books:
+    get:
+      tags:
+        - books
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+          description: books
+      operationId: getBooks
+      summary: get books
+      description: get books
+    post:
+      requestBody:
+        description: book
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+        required: true
+      tags:
+        - books
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: book created
+        "400":
+          description: invalid input
+      operationId: createBook
+      summary: create book
+      description: create book
+  /books/{id}:
+    get:
+      tags:
+        - books
+      parameters:
+        - name: id
+          description: book id
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: book
+        "404":
+          description: book not found
+      operationId: getBookById
+      summary: get book by id
+      description: get book by id
+    put:
+      requestBody:
+        description: book
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Book'
+        required: true
+      tags:
+        - books
+      parameters:
+        - name: id
+          description: book id
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+          description: book updated
+        "400":
+          description: invalid input
+        "404":
+          description: book not found
+      operationId: updateBook
+      summary: update book
+      description: update book
+    delete:
+      tags:
+        - books
+      parameters:
+        - name: id
+          description: book id
+          schema:
+            format: int64
+            type: integer
+          in: path
+          required: true
+      responses:
+        "204":
+          description: book deleted
+        "404":
+          description: book not found
+      operationId: deleteBook
+      summary: delete book
+      description: delete book
+    parameters:
+      - name: id
+        description: book id
+        schema:
+          format: int64
+          type: integer
+        in: path
+        required: true
+components:
+  schemas:
+    Book:
+      required:
+        - author
+        - name
+      type: object
+      properties:
+        id:
+          format: int64
+          minimum: 1
+          type: integer
+          readOnly: true
+        name:
+          maxLength: 100
+          minLength: 5
+          type: string
+        author:
+          maxLength: 100
+          minLength: 5
+          type: string
+          readOnly: false
+        publisher:
+          maxLength: 100
+          minLength: 5
+          type: string
+        total_edition:
+          format: int32
+          minimum: 1
+          type: integer
+        first_published:
+          format: date
+          type: string
