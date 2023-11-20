@@ -1,16 +1,16 @@
 ---
 openapi: 3.0.1
 info:
-  title: books api
+  title: Books API
   version: 1.0.0
-  description: books api
+  description: An API definition for a library of books
 servers:
-  - url: http://localhost:8080
+- url: http://localhost:8080
 paths:
   /books:
     get:
       tags:
-        - books
+      - books
       responses:
         "200":
           content:
@@ -32,7 +32,7 @@ paths:
               $ref: '#/components/schemas/Book'
         required: true
       tags:
-        - books
+      - books
       responses:
         "201":
           content:
@@ -48,15 +48,15 @@ paths:
   /books/{id}:
     get:
       tags:
-        - books
+      - books
       parameters:
-        - name: id
-          description: book id
-          schema:
-            format: int64
-            type: integer
-          in: path
-          required: true
+      - name: id
+        description: book id
+        schema:
+          format: int64
+          type: integer
+        in: path
+        required: true
       responses:
         "200":
           content:
@@ -78,15 +78,15 @@ paths:
               $ref: '#/components/schemas/Book'
         required: true
       tags:
-        - books
+      - books
       parameters:
-        - name: id
-          description: book id
-          schema:
-            format: int64
-            type: integer
-          in: path
-          required: true
+      - name: id
+        description: book id
+        schema:
+          format: int64
+          type: integer
+        in: path
+        required: true
       responses:
         "200":
           content:
@@ -103,15 +103,15 @@ paths:
       description: update book
     delete:
       tags:
-        - books
+      - books
       parameters:
-        - name: id
-          description: book id
-          schema:
-            format: int64
-            type: integer
-          in: path
-          required: true
+      - name: id
+        description: book id
+        schema:
+          format: int64
+          type: integer
+        in: path
+        required: true
       responses:
         "204":
           description: book deleted
@@ -121,19 +121,19 @@ paths:
       summary: delete book
       description: delete book
     parameters:
-      - name: id
-        description: book id
-        schema:
-          format: int64
-          type: integer
-        in: path
-        required: true
+    - name: id
+      description: book id
+      schema:
+        format: int64
+        type: integer
+      in: path
+      required: true
 components:
   schemas:
     Book:
       required:
-        - author
-        - name
+      - author
+      - name
       type: object
       properties:
         id:
