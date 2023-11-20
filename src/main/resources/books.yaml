@@ -1,9 +1,9 @@
 ---
 openapi: 3.0.1
 info:
-  title: books api
+  title: Books API
   version: 1.0.0
-  description: books api
+  description: An API definition for a library of books
 servers:
   - url: http://localhost:8080
 paths:
