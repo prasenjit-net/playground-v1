@@ -128,6 +128,21 @@ paths:
         type: integer
       in: path
       required: true
+  /test:
+    parameters:
+    - name: type
+      description: ""
+      schema:
+        enum:
+        - a
+        - b
+        - c
+        - d
+        - e
+        - f
+        type: string
+      in: query
+      required: true
 components:
   schemas:
     Book:
