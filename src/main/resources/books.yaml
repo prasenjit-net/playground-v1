@@ -129,6 +129,10 @@ paths:
       in: path
       required: true
   /test:
+    get:
+      responses:
+        "200":
+          description: success
     parameters:
     - name: type
       description: ""
